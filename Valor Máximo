@@ -1,0 +1,35 @@
+#include <cstdlib>
+#include <iostream>
+#include <math.h>
+#include <stdio.h>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    int m, n, x = 1, y = 1;
+    float max = 0, exp = 0;
+
+    cout << "\n\t\t\tExpressões matemáticas";
+    cout << "\n\n\tDigite um valor máximo para x: ";
+    cin >> m;
+    cout << "\tDigite um valor máximo para y: ";
+    cin >> n;
+
+    while (x < m) {
+        y = 1;
+        while (y < n) {
+            exp = (x * y) - pow(x, 2) + y;
+            if (exp > max)
+                max = exp;
+            y++;
+        }
+        x++;
+    }
+
+    cout << "\n\tO valor máximo aceito para x é: " << x;
+    cout << "\n\tO valor máximo aceito para y é: " << y;
+    cout << "\n\n\tO valor máximo para a expressão (xy - x² + y) é: " << max;
+
+    return 0;
+}
