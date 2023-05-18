@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(){
+    float valor = 0, soma = 0;
+    int contador = 1;
+    
+    printf("\t\tCálculo de Média");
+
+    printf("\n\n\tDigite '0' para sair");
+    printf("\n\tDigite um número diferente de 0 para o primeiro valor");
+
+    printf("\tDigite o %d", contador);
+    printf("° valor: ");
+    scanf("\t%f", &valor);
+
+    while (valor = 0){
+        printf("\tDigite um valor diferente de 0!");
+        printf("\tDigite novamente o 1° valor: ");
+        scanf("%f", valor);
+    }
+
+    while (valor != 0){
+        if (valor > maior)
+            maior = valor;
+        else if (valor < menor && valor != 0)
+            menor = valor;
+        contador++;
+
+        printf("\tDigite o %d° valor: ");
+        scanf("%f", &valor);
+        soma = soma + valor;
+    }
+    contador = contador - 1;
+
+    printf("\n\tA média dos valores inseridos é: %.2f", (soma / contador));
+    printf("\tO maior dos valores inseridos é: %.2f", maior);
+    printf("\tO menor dos valores inseridos é: %.2f", menor);
+
+    return 0;
+}
