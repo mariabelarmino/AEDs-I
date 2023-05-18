@@ -1,0 +1,75 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+
+using namespace std;
+
+int main(){
+
+    string tiposang;      
+    char rh;              
+    float pressaomax = 0, pressaomin = 0, idade = 0, contpressao = 0, contab = 0, contpessoas = 0, idades = 0;       
+
+    cout << "\n\t\t\tPesquisa de Características";
+    cout << "\n\t\t\t  digite 'fim' para sair";
+
+    cout << "\n\n\tDigite o seu tipo sanguíneo: ";
+    cin >> tiposang;
+    while (tiposang != "A" && tiposang != "B" && tiposang != "O" && tiposang != "AB" && tiposang != "fim"){
+        cout << "\n\tEsse tipo sanguíneo não é válido! Digite novamente seu tipo sanguíneo: ";
+        cin >> tiposang;
+    }
+
+    while (tiposang != "fim"){
+
+        cout << "\n\tDigite o tipo de rh do seu sangue: ";
+        cin >> rh;
+        while (rh != '+' && rh != '-'){
+            cout << "\n\tEsse tipo de rh não é válido! Digite novamente o fator rh: ";
+            cin >> rh;
+        }
+
+        cout << "\n\tDigite a sua pressão arterial máxima: ";
+        cin >> pressaomax;
+        while (pressaomax < 7 || pressaomax > 25){
+            cout << "\n\tEsse valor não é válido! Digite novamente o valor máximo da sua pressão arterial: ";
+            cin >> pressaomax;
+        }
+
+        cout << "\n\tDigite a sua pressão arterial mínima: ";
+        cin >> pressaomin;
+        while (pressaomax < 2 || pressaomax > 20){
+            cout << "\n\tEsse valor não é válido! Digite novamente o valor mínimo da sua pressão arterial: ";
+            cin >> pressaomin;
+        }
+
+        cout << "\n\tDigite a sua idade: ";
+        cin >> idade;
+        while (idade < 18 || idade > 130){
+            cout << "\n\tEsse valor não é válido! Digite novamente a sua idade: ";
+            cin >> idade;
+        }
+
+        idades = idades + idade;
+
+        if (pressaomax > 14 || pressaomin > 10){
+            contpressao++;
+            if ((tiposang == "A" || tiposang == "B") && rh == '-')
+                contab++;
+        }
+        contpessoas++;
+
+        cout << "\n\n\tDigite o seu tipo sanguíneo: ";
+        cin >> tiposang;
+        while (tiposang != "A" && tiposang != "B" && tiposang != "O" && tiposang != "AB" && tiposang != "fim"){
+            cout << "\n\tEsse tipo sanguíneo não é válido! Digite novamente seu tipo sanguíneo: ";
+            cin >> tiposang;
+        }
+    }
+
+    cout << "\n\tA porcentagem de pessoas com tipo sanguíneo A- ou B- entre as pessoas com presão alta é: " << (contab / contpressao) * 100;
+    cout << "\n\tA média das idades das pessoas que responderam a pesquisa é: " << (idades / contpessoas);
+
+    return 0;
+}
