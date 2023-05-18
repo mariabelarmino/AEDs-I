@@ -1,0 +1,57 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+
+using namespace std; //usar string
+
+int main(){
+    float raio, altura, lado, cilindro = 0, cubo = 0, esfera = 0, volume = 0, area = 0, areatot = 0, voltot = 0;
+    string figura;
+
+    ifstream teclado("valores.txt"); //declarar variável teclado e linkar arquivo
+    if (!teclado.is_open()){
+        cout << "\nErro: Arquivo não encontrado. \n";
+        return 1;
+    }
+
+    cout << "\t\t\tÁrea e Volume da cena\n";
+
+    teclado >> figura; //entrada de texto do arquivo inserido
+
+    while (figura != "fim"){
+        if (figura == "esfera"){
+            teclado >> raio;
+            area = (4 * 3.14 * pow(raio, 2));
+            cout << "\n\tA área da esfera é: " << area;
+            volume = ((4 / 3) * 3.14 * pow(raio, 3));
+            cout << "\n\tO volume da esfera é: " << volume;
+        }
+
+        if (figura == "cilindro"){
+            teclado >> raio;
+            teclado >> altura;
+            area = (2 * (3.14 * pow(raio, 2)) + 3.14 * pow(raio, 2) * altura);
+            cout << "\n\n\tA área do cilíndro é: " << area;
+            volume = (3.14 * pow(raio, 2) * altura);
+            cout << "\n\tO volume do cilíndro é: " << volume;
+        }
+
+        if (figura == "cubo"){
+            teclado >> lado;
+            area = (6 * pow(lado, 2));
+            cout << "\n\n\tA área do cubo é: " << area;
+            volume = (pow(lado, 3));
+            cout << "\n\tO volume do cubo é: " << volume;
+        }
+
+        teclado >> figura;
+        areatot = areatot + area;
+        voltot = voltot + volume;
+    }
+
+    cout << "\n\n\tA área total da cena é: " << areatot;
+    cout << "\n\tO volume total da cena é: " << voltot;
+
+    return 0;
+}
