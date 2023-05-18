@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+int main()
+{
+    float lado1, lado2, lado3;
+
+    /*entrada de valores dos lados + não permitir valores nulos*/
+    printf("\n\t Tipos de Triângulos\n\n");
+    printf("\n\t Digite o valor do primeiro lado:");
+    scanf("%f", &lado1);
+    while (lado1 <= 0)
+    {
+        printf("\n\n\t Esse valor não é válido");
+        printf("\n\t Digite um novo valor:");
+        scanf("%f", &lado1);
+    }
+    printf("\n\t Digite o valor do segundo lado:");
+    scanf("%f", &lado2);
+    while (lado2 <= 0)
+    {
+        printf("\n\n\t Esse valor não é válido");
+        printf("\n\t Digite um novo valor:");
+        scanf("%f", &lado2);
+    }
+    printf("\n\t Digite o valor do terceiro lado:");
+    scanf("%f", &lado3);
+    while (lado3 <= 0)
+    {
+        printf("\n\n\t Esse valor não é válido");
+        printf("\n\t Digite um novo valor:");
+        scanf("%f", &lado3);
+    }
+
+    /*ver se o triângulo existe + não permitir valores nulos*/
+    if (lado1 + lado2 < lado3 || lado2 + lado3 < lado1 || lado1 + lado3 < lado2)
+    {
+        printf("\n\n\t Esses valores não formam um triângulo");
+        printf("\n\t Digite novos valores:");
+        printf("\n\t Lado 1:");
+        scanf("%f", &lado1);
+        while (lado1 <= 0)
+        {
+            printf("\n\n\t Esse valor não é válido");
+            printf("\n\t Digite um novo valor:");
+            scanf("%f", &lado1);
+        }
+
+        printf("\n\t Lado 2:");
+        scanf("%f", &lado2);
+        while (lado2 <= 0)
+        {
+            printf("\n\n\t Esse valor não é válido");
+            printf("\n\t Digite um novo valor:");
+            scanf("%f", &lado2);
+        }
+
+        printf("\n\t Lado 3:");
+        scanf("%f", &lado3);
+        while (lado3 <= 0)
+        {
+            printf("\n\n\t Esse valor não é válido");
+            printf("\n\t Digite um novo valor:");
+            scanf("%f", &lado3);
+        }
+    }
+
+    /*verificar a classificação dos triângulos*/
+    if (lado1 == lado2 && lado1 == lado3)
+        printf("\n\t Seu triângulo é equilátero");
+    else if (lado1 == lado2 && lado1 != lado3 || lado1 == lado3 && lado1 != lado2 || lado3 == lado2 && lado2 != lado1)
+        printf("\n\t Seu triângulo é isóceles");
+    else if (lado1 != lado2 && lado1 != lado3 && lado2 != lado3)
+    {
+        printf("\n\t Seu triângulo é escaleno");
+        if (lado1 * lado1 + lado2 * lado2 == lado3 * lado3 || lado2 * lado2 + lado3 * lado3 == lado1 * lado1 || lado1 * lado1 + lado3 * lado3 == lado2 * lado2)
+            printf("\n\t Seu triângulo é retângulo");
+    }
+    return 0;
+}
