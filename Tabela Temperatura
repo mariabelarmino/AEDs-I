@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+    float tempcel, tempfah, incremento;
+
+    tempcel = 0;
+
+    printf("\tDigite a variação das temperaturas:");
+    scanf("%f", &incremento);
+
+    while (incremento > 10 || incremento < 1)
+    {
+        printf("\tDigite uma nova variação das temperaturas:");
+        scanf("%f", &incremento);
+    }
+
+    printf("\n\n\tTempratura em Celcius     Temperatura em Farenheit\n");
+
+    while (tempcel <= 100)
+    {
+
+        tempfah = tempcel * 9 / 5 + 32;
+        printf("\t\t %.2f                 %.2f\n", tempcel, tempfah);
+        tempcel = tempcel + incremento;
+    }
+
+    return 0;
+}
