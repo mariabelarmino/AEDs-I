@@ -1,0 +1,18 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    float popa = 90000000, popb = 200000000;
+    int anos;
+    
+    while (popa < popb){
+        popa = popa + (0.03 * popa);
+        popb = popb + (0.15 * popb);
+        anos++;
+    }
+    cout << "A quantidade de tempo em anos que vai demorar para que a população de A ultrapasse a população de B é: " << anos;
+
+    return 0;
+}
