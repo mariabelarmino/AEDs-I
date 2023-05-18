@@ -1,0 +1,40 @@
+#include <cstdlib>
+#include <iostream>
+#include <math.h>
+#include <stdio.h>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    string mercadoria;
+    float vend= 0, comp = 0, x = 0, y = 0, menor = 0, entre = 0, maior = 0;
+    
+    ifstream teclado ("produtos.txt");
+    if (!teclado.is_open()){
+        cout << "\nErro: Arquivo não encontrado. \n";
+        return 1;
+    }
+    
+    teclado >> mercadoria >> comp >> vend; 
+    
+    while (mercadoria != "fim"){
+        x = 0.1 * comp;
+        y = 0.2 * comp;
+        if (x > vend)
+            menor++;
+        else 
+            if (x < vend && vend < y)
+                entre++;
+            else 
+                if (vend > y)
+                    maior++;
+        
+        teclado >> mercadoria >> comp >> vend; 
+    }
+    cout << "\n\tA quantidade de produtos que proporcionam lucro menor que 10% é: " << menor;
+    cout << "\n\tA quantidade de produtos que proporcionam lucro entre 10 e 20% é: " << entre;
+    cout << "\n\tA quantidade de produtos que proporcionam lucro maior que 20% é: " << maior;
+    
+    return 0;
+}
