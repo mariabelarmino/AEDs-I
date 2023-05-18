@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+
+using namespace std;
+
+int main(){
+    int cont = 1, x = 1;
+
+    cout << "\n\t\t\t\tFunções Matemáticas";
+    while (cont <= 10){
+
+        cout << "\n\n\t\t\t\t    Para x = " << x;
+
+        cout << "\n\th(x) = x² - 16";
+        cout << "\n\th(" << x << ") = " << pow(x, 2) - 16;
+
+        cout << "\n\n\tf(x) = h(x), se h(x) ≥ 0 e f(x) = 1, se h(x) < 0";
+        if (x >= 4)
+            cout << "\n\tf(" << x << ") = " << pow(x, 2) - 16;
+        else if (x < 4)
+            cout << "\n\tf(" << x << ") =  1";
+
+        cout << "\n\n\tg(x) = x² + 16, se f(x) =  0 e g(x) = 0, se f(x) > 0";
+        if (x == 4)
+            cout << "\n\tf(" << x << ") = " << pow(x, 2) + 16;
+        else
+            cout << "\n\tf(" << x << ") = 0";
+
+        cont++;
+        x++;
+    }
+    return 0;
+}
