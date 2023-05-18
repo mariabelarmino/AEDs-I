@@ -1,0 +1,47 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main(int argc, char **argv){
+
+    float totalpessoas = 0, altos = 0, baixas = 0, homens = 0, alturamulher = 0;
+    char sexo;
+    float altura = 0, alturahomem = 0;
+
+    ifstream teclado("valores.txt");
+    if (!teclado.is_open()){
+        cout << "\nErro: Arquivo não encontrado. \n";
+        return 1;
+    }
+
+    teclado >> altura;
+    teclado >> sexo;
+
+    while (altura > 1 && altura < 2.3){
+        if (altura > 1.8)
+            altos++;
+        if (altura > 1.8 && sexo == 'm'){
+            alturahomem = alturahomem + altura;
+            homens++;
+        }
+        if (sexo == 'f' && altura < 1.7)
+            alturamulher++;
+
+        totalpessoas++;
+
+        teclado >> altura;
+        teclado >> sexo;
+    }
+
+    altos = altos / totalpessoas;
+    homens = alturahomem / homens;
+    alturamulher = alturamulher / totalpessoas;
+
+    cout << "\n\tA porcentagem de pessoas com altura maior que 1,80m é: " << (altos * 100);
+    cout << "\n\tA média de altura dos homens é: " << homens;
+    cout << "\n\tA porcentagem de mulheres menores que 1,70m entre todas as pessoas é: " << (alturamulher * 100);
+
+    return 0;
+}
