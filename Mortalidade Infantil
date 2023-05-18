@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    int morte, idade, meninas, meninos, nascimentos, novos;
+    string sexo;
+
+    cout << "\n\t\tÍndice de mortalidade infantil";
+    cout << "\n\tIndique quantas crianças nasceram no período estudado: ";
+    cin >> nascimentos;
+
+    cout << "\n\tIndique o sexo da criança: ";
+    cin >> sexo;
+
+    while (sexo != 'sair'){
+        cout << "\n\tIdade de falecimento (em meses): ";
+        cin >> idade;
+        if (idade < 24)
+        novos++;
+        
+        morte++;
+        
+        cout << "\n\tIndique o sexo da criança: ";
+        cin >> sexo;
+        if (sexo == 'f')
+        meninas++;
+        else 
+            if (sexo == 'm')
+            meninos++;
+    }
+    cout << "\n\tA porcentagem de crianças mortas no período pesquisado é: " << ((morte/nascimentos) * 100 )<< "%";
+    cout << "\n\tA porcentagem de meninos mortos nesse período é: " << ((meninos/nascimentos) * 100) << "%";
+    cout << "\n\tA porcentagem de crianças que viveram menos de 24 meses é: " << ((novos/nascimentos) * 100) << "%";
+    
+    return 0;
+}
