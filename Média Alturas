@@ -1,0 +1,15 @@
+int main(){
+    float altura = 0, soma = 0, media = 0;
+    int contador = 0;
+
+    printf("\tMédia de Alturas\n\n");
+    while (contador < 10){
+        contador++;
+        printf("\tDigite a altura da pessoa %d: ", contador);
+        scanf("%f", &altura);
+        soma = soma + altura;
+    }
+    media = soma / 10;
+    printf("\n\tA média das alturas inseridas é: %f", media);
+    return 0:
+}
