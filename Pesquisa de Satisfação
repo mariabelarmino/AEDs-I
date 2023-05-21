@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+
+int main(){
+    int idade = 0, positivo = 0, idadesim = 0, total = 0, maioridade = 0, menoridade = 0;
+    char avaliacao;
+
+    cout << "\n\t\t\tPesquisa de satisfação";
+
+    while (total <= 5){
+
+        cout << "\n\n\tDigite a sua idade: ";
+        cin >> idade;
+
+        cout << "\n\tAvalie, diga se gostou do novo produto XYZ: ";
+        cin >> avaliacao;
+
+        if (avaliacao == 's'){
+            positivo++;
+            idadesim = idade;
+        }
+        if (idade > maioridade)
+            maioridade = idade;
+        else if (idade < menoridade && idade != 0)
+            menoridade = idade;
+        total++;
+    }
+
+    cout << "\n\n\tO número de pessoas que responderam sim foi: " << positivo;
+    cout << "\n\n\tO número de pessoas que responderam não foi: " << (200 - positivo);
+    cout << "\n\n\tA média de idade das pessoas que responderam sim é: " << idadesim / positivo;
+    cout << "\n\n\tO mais velho que respondeu sim foi: " << maioridade;
+    cout << "\n\tO mais novo que respondeu sim foi: " << menoridade;
+}
