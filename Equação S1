@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+
+int main(){
+    float num = 1, den = 1, div = 0;
+
+    cout << "Equação S";
+    while (num < 100 && den <= 50){
+        div = (num / den) + div;
+        num = num + 2;
+        den++;
+    }
+
+    cout << div;
+
+    return 0;
+}
