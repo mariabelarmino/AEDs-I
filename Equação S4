@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+
+int main(){
+    float num = 0, den = 1, div = 0, fat = 0, prec = 0, exp = 2, termo = 1;
+
+    cout << "\n\t\t\tEquação S";
+    cout << "\n\tDigite o numerador: ";
+    cin >> num;
+    cout << "\n\tDigite a precisão que você deseja nos cálculos: ";
+    cin >> prec;
+
+    while (den <= 38){
+        fat = den;
+        while (fat >= 1){
+            fat = fat - 1;
+            den = den * fat;
+        }
+        num = pow(num, exp);
+        if (termo % 2 == 0)
+            div = num / den - div;
+        else
+            div = num / den + div;
+        den = den + 2;
+        exp = exp + 2;
+    }
+
+    cout << "\n\n\tO valor de S é: " << 1 - div;
+    cout << "\n\tA equação tem " << % prec.f den << " termos.";
+
+    return 0;
+}
