@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+int main(){
+
+    int matricula, aulas, aluno, aprov, reprov, reprovf;
+    float nota1 = 0, nota2 = 0, nota3 = 0, maior = 0, menor = 0, final;
+
+    while (aluno < 100){
+        printf("\n\tEscreva o seu número de matrícula: "); 
+        scanf("%d", &matricula);
+
+        printf("\n\n\tInsira a nota da 1° prova: "); 
+        scanf("%f", &nota1);
+
+        if (nota1 > maior) 
+            maior = nota1;
+        else if (nota1 < menor)
+            menor = nota1;
+
+        printf("\n\tInsira a nota da 2° prova: ");
+        scanf("%f", &nota2);
+
+        if (nota2 > maior)
+            maior = nota2;
+        else if (nota2 < menor)
+            menor = nota2;
+
+        printf("\n\tInsira a nota da 3° prova: ");
+        scanf("%f", &nota3);
+
+        if (nota3 > maior)
+            maior = nota3;
+        else if (nota3 < menor)
+            menor = nota3;
+
+        printf("\n\n\tInsira o número de presenças: "); 
+        scanf("%d", &aulas);
+    }
+
+    final = (nota1 + nota2 + nota3) / 3; 
+
+    printf("\n\tSua nota final é: ", final)
+
+    if (aulas < 40){
+    printf("\n\tVocê foi reprovado por frequência!"); 
+    reprovf++;
+    }
+
+    if (final < 60){
+        printf("\n\tVocê foi reprovado por nota!"); 
+        reprov++;
+    }
+
+    if (final > 60 && aulas > 40)
+        printf("\n\tParabéns, você foi aprovado!!"); 
+
+    if (final < 60 && aulas < 40)
+        reprov = reprov - 1;
+
+    printf("\n\tA maior nota da turma é: ", maior);                              
+    printf("\n\tA menor nota da turma é: ", menor);                              
+    printf("\n\rA quantidade de alunos que foram reprovados é: ", reprov);       
+    printf("\n\tA quantidade de alunos reprovados por frequência é: ", reprovf); 
+    printf("\n\tA nota média da turma é: ", (nota1 + nota2 + nota3) / 3);                              
+}
