@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+
+int main(){
+    float exp = 1, den = 50, div = 0;
+
+    cout << "\n\t\t\tEquação S";
+
+    while (exp <= 50 && den > 1){
+        div = pow(2,exp)/den + div;
+        exp++;
+        den = den - 1;
+    }
+
+    cout << "\n\n\tO valor de S é: " << div;
+
+    return 0;
+}
