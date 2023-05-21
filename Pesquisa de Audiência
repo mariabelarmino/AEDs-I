@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+
+int main(){
+    int televisao = 0, IV = 0, V = 0, VII = 0, XII = 0, pessoas = 0;
+    float canal = 1, totalp = 0;
+
+    cout << "\n\t\tPesquisa de audiência";
+
+    cout << "\n\tDigite 1 se a TV estava ligada e 0 se estava desligada: ";
+    cin >> televisao;
+    if (televisao == 1){
+        cout << "\n\tDigite o número do canal que estava sendo passado: ";
+        cin >> canal;
+        while (canal != 0){
+            while (canal != 4 && canal != 5 && canal != 7 && canal != 12 && canal != 0){
+                cout << "\n\tEsse canal não é válido! Digite novamente um canal: ";
+                cin >> canal;
+            }
+            cout << "\n\tQuantas pessoas estavam assistindo esse canal?: ";
+            cin >> pessoas;
+            if (canal == 4)
+                IV = IV + pessoas;
+            else if (canal == 5)
+                V = V + pessoas;
+            else if (canal == 7)
+                VII = VII + pessoas;
+            else if (canal == 12)
+                XII = XII + pessoas;
+            totalp = pessoas + totalp
+                                   cout
+                     << "\n\tDigite o número do canal que estava sendo passado: ";
+            cin >> canal;
+        }
+    }
+    cout << "\n\n\tA porcentagem de audiência do canal 4 foi: " << (IV / totalp) * 100 << "%";
+    cout << "\n\tA porcentagem de audiência do canal 5 foi: " << (V / totalp) * 100 << "%";
+    cout << "\n\tA porcentagem de audiência do canal 7 foi: " << (VII / totalp) * 100 << "%";
+    cout << "\n\tA porcentagem de audiência do canal 12 foi: " << (XII / totalp) * 100 << "%";
+
+    return 0;
+}
