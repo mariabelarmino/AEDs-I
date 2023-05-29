@@ -1,0 +1,170 @@
+#include <stdio.h> //biblioteca padrão c
+#include <cstdlib> //biblioteca padrão c++
+#include <iostream> //cin, cout e cerr
+#include <fstream> //ler arquivo texto
+#include <iomanip> //formatar com cores e definir precisão de valores
+
+#define VERMELHO "\e[0;31m" //exibir mensagem vermelha
+#define AZULB "\e[1;34m" //exibir mensagem azul
+#define AZUL "\e[0;34m" //exibir mensagem preta em negrito
+#define ROXO "\e[0;35m" //exibir mensagem roxa
+#define RESET "\e[0m" //exibir mensagem com formatação padrão
+
+using namespace std; //usar strings
+
+int main() {
+    float ano, //ano de fabricação do carro
+            km, //quilometragem rodada
+            potencia, //potência do motor
+            avent = 0, //tipo aventureiro
+            hatch = 0, //tipo hatch
+            sedan = 0, //tipo sedan
+            fam = 0, //tipo família
+            pic = 0, //tipo picape
+            suv = 0, //tipo SUV
+            esp = 0, //tipo esportivo
+            conv = 0, //tipo conversível
+            van = 0, //tipo van
+            jipe = 0, //tipo jipe
+            furg = 0, //tipo furgão
+            cam = 0, //tipo caminhonete
+            pas = 0, //tipo passeio
+            automhid = 0, //câmbio automático e direção didráulica
+            velho = 0, //fabricado a 5 anos ou mais
+            mediakm = 0, //media de km rodados de todos os carros fabricados a 5 anos ou mais
+            carros = 0, //contador de carros
+            barato = 1000000000, //carro mais barato da lista
+            caro = 0, //carro mais caro da lista
+            valor = 0, //valor do carro
+            portas = 0; //quantidade de portas do veículo
+
+
+    string modelo, //modelo do carro
+            marca, //marca do carro
+            tipo, //tipo do carro
+            combustivel, //tipo de combustível aceito
+            cambio, //tipo de câmbio do carro
+            placa, //placa do carro
+            placab, //placa do mais barato
+            placac, //placa do mais caro
+            direcao, //tipo de direção
+            cor; //cor do veículo
+
+    ifstream teclado("BD_veiculos.txt"); //entrada do arquivo BD_veiculos.txt no programa
+    if (!teclado.is_open()) {
+        cerr << VERMELHO << "\n\t\tErro: Arquivo não encontrado. \n"; //mensagem de erro caso arquivo não encontrado
+        return 1;
+    }
+
+    teclado >> modelo >> marca >> tipo >> ano >> km >> potencia >> combustivel >> cambio >> direcao >> cor >> portas >> placa >> valor; //entrada de valores no programa
+
+    while (modelo != "FIM") { //condição de permanência
+        //receber quantidade de carros por tipo
+        if (tipo == "AVENTUREIRO")
+            avent++;
+        else
+            if (tipo == "HATCH")
+            hatch++;
+        else
+            if (tipo == "SEDAN")
+            sedan++;
+        else
+            if (tipo == "FAMILIAR")
+            fam++;
+        else
+            if (tipo == "PICAPE")
+            pic++;
+        else
+            if (tipo == "SUV")
+            suv++;
+        else
+            if (tipo == "ESPORTIVO")
+            esp++;
+        else
+            if (tipo == "CONVERSÍVEL")
+            conv++;
+        else
+            if (tipo == "VAN")
+            van++;
+        else
+            if (tipo == "JIPE")
+            jipe++;
+        else
+            if (tipo == "FURGAO")
+            furg++;
+        else
+            if (tipo == "CAMINHONETE")
+            cam++;
+        else
+            if (tipo == "PASSEIO")
+            pas++;
+
+        //contar os carros com cambio automático e direção hidráulica
+        if (cambio == "AUTOMATICO"){
+            if (direcao == "HIDRAULICA")
+            automhid++;
+        }
+        //receber placa e valor do veículo mais barato entre os veículos com potência do motor 1.0
+        if (potencia == 1.0) {
+            if (valor < barato) {
+                barato = valor;
+                placab = placa;
+            }
+        }
+        //receber placa e valor do veículo mais caro com direção hidráulica e combustível flex
+        if (combustivel == "FLEX") {
+            if (direcao == "HIDRAULICA")
+                if (valor > caro) {
+                    caro = valor;
+                    placac = placa;
+                }
+        }
+        //receber a quantidade e média de kilometragem dos veículos com 5 anos ou mais (2018)
+        if (ano <= 2018) {
+            velho++;
+            mediakm = mediakm + km;
+        }
+        carros++; //contagem de carros da lista
+
+        teclado >> modelo >> marca >> tipo >> ano >> km >> potencia >> combustivel >> cambio >> direcao >> cor >> portas >> placa >> valor; //entrada de valores no programa 
+    }
+
+    //mostrar a quantidade e média de kilometragem dos veículos com 5 anos ou mais (2018) -formatado
+    cout << AZULB << "\n\t\t\t    Dos veículos com 5 anos ou mais";
+    cout << AZUL << "\n\t\t\t    Quantidade de carros         " << RESET << velho;
+    cout << AZUL << "\n\t\t\t    Média de quilometragem  " << RESET << mediakm / velho << "km";
+
+    cout << setiosflags(ios::fixed); //2 casas decimais
+    
+    //mostrar porcentagens de veículos nas categorias de tipo -formatado
+    cout << AZULB << "\n\n\n\t\t\tPorcentagem de veículos nas categorias de tipo";
+    cout << setprecision(2) << AZUL << "\n\t\t\tAventureiro                              " << RESET << avent / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tHatch                                   " << RESET << hatch / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tSedã                                    " << RESET << sedan / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tFamiliar                                 " << RESET << fam / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tPicape                                   " << RESET << pic / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tSUV                                     " << RESET << suv / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tEsportivo                                " << RESET << esp / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tConversível                              " << RESET << conv / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tVan                                      " << RESET << van / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tJipe                                     " << RESET << jipe / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tFurgão                                   " << RESET << furg / carros * 100 << "%";
+    cout << setprecision(2) << AZUL << "\n\t\t\tCaminhonete                              " << RESET << cam / carros * 100 << "%";
+
+    //mostrar placa e valor do veículo mais caro com combustível flex e direção hidráulica, e ainda, valor do seguro estimado (porcentagem estimada sobre o valor do veículo) -fomatado
+    cout << AZULB << "\n\n\n\t\t  Veículo mais caro com combustível flex e direção hidráulica";
+    cout << AZUL << "\n\t\t  Placa                                               " << RESET << placac;
+    cout << setprecision(2) << AZUL << "\n\t\t  Valor" << RESET << "                                           R$" << caro;
+    cout << setprecision(2) << AZUL << "\n\t\t  Valor do seguro" << RESET << "                                   R$" << (caro * 0.13) / 12 << "/mês";
+
+    //mostrar a placa e valor do veículo mais barato entre os veículos com potência do motor 1.0, e ainda, valor da prestação do financiamento em 48 meses com taxa de juros atuais -formatado
+    cout << AZULB << "\n\n\n\t\tVeículo mais barato entre os veículos com potência do motor 1.0";
+    cout << AZUL << "\n\t\tPlaca                                                   " << RESET << placab;
+    cout << setprecision(2) << AZUL << "\n\t\tValor" << RESET << "                                                R$" << barato;
+    cout << setprecision(2) << AZUL << "\n\t\tPrestação do financiamento em 48 meses" << RESET << "                R$" << (barato / 48) * 1.49;
+
+    //mostrar a porcentagem de veículos com câmbio automático e com direção hidráulica entre todos os veículos -formatado
+    cout << setprecision(2) << AZULB << "\n\n\n\tPorcentagem de veículos com câmbio automático e direção hidráulica entre todos os veículos: " << RESET << automhid / carros * 100 << "%";
+
+    return 0;
+}
