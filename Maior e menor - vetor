@@ -1,0 +1,25 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    float vetor[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int imaior, imenor, maior = 0, menor = 11, i;
+
+    for (i = 0; i < 10; i++) {
+        if (vetor[i] > maior) {
+            imaior = i;
+            maior = vetor[i];
+        }
+        if (vetor[i] < menor) {
+            imenor = i;
+            menor = vetor[i];
+        }
+    }
+
+    cout << "\n\tO maior valor da lista é " << maior << " e sua posição é " << imaior;
+    cout << "\n\tO menor valor da lista é " << menor << " e sua posição é " << imenor;
+
+    return 0;
+}
