@@ -1,0 +1,27 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    
+    float vetor[10] = {1,2,3,4,5,6,7,8,9,10}, valor, posicao = -1, qtd = 0;
+    int i;
+    
+    cout << "\n\tInsira o valor que deseja pocurar no vetor: ";
+    cin >> valor;
+    
+    for (i = 0; i < 10; i++){
+        if (valor == vetor[i]){
+            posicao = i;
+            qtd++;
+        }
+    }
+    if (posicao == -1)
+        cout << "\n\tEsse valor não foi encontrado na lista.";
+    else if (qtd == 1)
+    cout << "\n\tO valor digitado foi encontrado 1 vez.";
+    else cout << "\n\tO valor digitado foi encontrado " << qtd << " vezes.";
+    
+    return 0;
+}
