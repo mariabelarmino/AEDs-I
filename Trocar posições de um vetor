@@ -1,0 +1,29 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+
+    float nota[10] = {40, 11, 27, 30, 4, 25, 16, 27, 87, 9}, valores = 0, valor = 0;
+    int i;
+
+    for (i = 0; i < 5; i++) {
+        valores = nota[i];
+        nota[i] = nota[9 - i];
+        nota [9 - i] = valores;
+    }
+
+    cout << "\n\t[";
+
+    for (i = 0; i < 10; i++) {
+        cout << nota[i];
+        if (i < 9)
+            cout << ", ";
+    }
+
+    cout << "]";
+
+    return 0;
+}
