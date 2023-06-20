@@ -1,0 +1,39 @@
+#include <cstdlib>
+#include <iostream>
+#include <stdbool.h>
+
+using namespace std;
+
+int main() {
+    char nome1[30], nome2[30];
+    int i = 0;
+    bool compara = 1;
+
+    nome1[0] = 'M';
+    nome1[1] = 'a';
+    nome1[2] = 'r';
+    nome1[3] = 'i';
+    nome1[4] = 'a';
+    nome1[5] = '\0';
+
+    nome2[0] = 'M';
+    nome2[1] = 'a';
+    nome2[2] = 'r';
+    nome2[3] = 'i';
+    nome2[4] = 'a';
+    nome2[5] = 'n';
+    nome2[6] = 'a';
+    nome2[7] = '\0';
+
+    while (nome1[i] != '\0' || nome2[i] != '\0') {
+        if (nome1[i] != nome2[i]) {
+            compara = 0;
+        }
+        i++;
+    }
+    if (compara == 0)
+        cout << "\n\tOs nomes são diferentes!";
+    else cout << "\n\tOs nomes são iguais!";
+
+    return 0;
+}
