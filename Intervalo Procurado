@@ -1,0 +1,38 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+
+    int vetor1[100], i, j = 0, vetor2[100], menor, maior;
+
+    ifstream teclado("vetor1.txt");
+    if (!teclado.is_open()) {
+        cerr << "\n\tArquivo não encontrado!";
+        return 1;
+    }
+
+    cout << "Digite o intervalo procurado: ";
+    cout << "\n\tMenor valor: ";
+    cin >> menor;
+    cout << "\n\tMaior valor: ";
+    cin >> maior;
+    cout << "\n\tNúmeros procurados: [";
+
+    for (i = 0; i < 100; i++) {
+        teclado >> vetor1[i];
+        if (vetor1[i] >= menor && vetor1[i] <= maior) {
+            vetor2[j] = vetor1[i];
+            j++;
+            cout << vetor2[j];
+            if (i < 99)
+                cout << ", ";
+        }
+    }
+
+    cout << "]";
+
+    return 0;
+}
