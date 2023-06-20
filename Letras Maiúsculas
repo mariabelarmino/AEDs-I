@@ -1,0 +1,25 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    
+    char nome[30] = {"Maria Luiza Alves Belarmino"}, nomemai[30];
+    int i = 0;
+    
+    for (i = 0; nome[i] != '\0'; i++){
+        if (nome[i] >= 97 && nome[i] <= 122){
+            nomemai[i] = nome[i] - 32;
+        }
+        else nomemai[i] = nome[i];
+    }
+
+    cout << "\n\tO nome em letras maiúsculas é: ";
+    
+    for (i = 0; nome[i] != '\0'; i++){
+        cout << nomemai[i];
+    }
+
+    return 0;
+}
