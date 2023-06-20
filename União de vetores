@@ -1,0 +1,26 @@
+#include <cstdlib>
+#include <iostream>
+#define TAM 10
+
+using namespace std;
+
+int main(){
+    int v1[TAM] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, v2[TAM] = 
+{11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, v3[TAM], i, j;
+
+    cout << "\n\tVetor criado: [";
+
+    for (i = 0; i < (2 * TAM); i++){
+        for (i = 0; i < TAM; i++){
+            v3[i] = v1[i];
+        }
+        for (j = 0; j < TAM; j++){
+            v3[i] = v2[j];
+        }
+        cout << v3[i] << " ";
+    }
+    cout << "]";
+
+return 0;
+
+}
