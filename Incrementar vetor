@@ -1,0 +1,28 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    int i, vetor[;
+    float valor;
+
+    cout << "\n\tDigite o valor que deseja incrementar no vetor";
+    cin >> valor;
+
+    cout << "\n\tLista: [";
+
+    for (i = 0; i < 10; i++){
+        vetor[i] = vetor[i] + valor;
+        if (vetor[i] > 255)
+            vetor[i] = 255;
+        else if (vetor[i] < 0)
+            vetor[i] = 0;
+        cout << vetor[i] << " ";
+    }
+
+    cout << "]";
+
+    return 0;
+}
