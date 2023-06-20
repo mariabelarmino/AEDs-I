@@ -1,0 +1,22 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    char cpf[15] = {"122.909.456-33"};
+    int i, j;
+
+    for (i = 0; i < 15; i++) {
+        if (cpf[i] < 48 || cpf[i] > 57) {
+            for (j = i; j < 15; j++) {
+                cpf[j] = cpf[j + 1];
+            }
+        }
+    }
+
+    cout << "CPF só números: " << cpf;
+
+    return 0;
+}
