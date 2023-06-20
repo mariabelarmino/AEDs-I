@@ -1,0 +1,49 @@
+#include <cstdlib>
+#include <iostream>
+#include <stdbool.h>
+
+using namespace std;
+
+int main() {
+    char nome[30], nomecomp[60];
+    int i, tam = 18;
+    bool contido = 0;
+
+    nome[0] = 'M';
+    nome[1] = 'a';
+    nome[2] = 'r';
+    nome[3] = 'i';
+    nome[4] = 'a';
+    nome[5] = '\0';
+
+    nomecomp[0] = 'M';
+    nomecomp[1] = 'a';
+    nomecomp[2] = 'r';
+    nomecomp[3] = 'i';
+    nomecomp[4] = 'a';
+    nomecomp[5] = ' ';
+    nomecomp[6] = 'L';
+    nomecomp[7] = 'u';
+    nomecomp[8] = 'i';
+    nomecomp[9] = 'z';
+    nomecomp[10] = 'a';
+    nomecomp[11] = ' ';
+    nomecomp[12] = 'A';
+    nomecomp[13] = 'l';
+    nomecomp[14] = 'v';
+    nomecomp[15] = 'e';
+    nomecomp[16] = 's';
+    nomecomp[17] = '\0';
+
+    for (i = 0; i < tam; i++) {
+        if (nomecomp[i] == nome[0] && nomecomp[i + 1] == nome[1] && nomecomp[i + 2] == nome[2] && nomecomp[i + 3] == nome[3]) {
+            contido = 1;
+        }
+    }
+    
+    if (contido == 1)
+        cout << "\n\tO nome está contido no nome completo!";
+    else cout << "\n\tO primeiro nome não está contido no nome";
+
+    return 0;
+}
