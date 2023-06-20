@@ -1,0 +1,30 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#define TAM 10
+
+using namespace std;
+
+int main() {
+    int vetor1[TAM], vetor2[TAM], vetor3[TAM], i;
+    
+    ifstream teclado ("vetor1.txt");
+    if (!teclado.is_open()){
+        cerr << "\n\tArquivo não encontrado!";
+        return 1;
+    }
+    
+    cout << "Vetor criado: [";
+    
+    for (i = 0; i < TAM; i++){
+        teclado >> vetor1[i] >> vetor2[i];
+        vetor3[i] = vetor1[i] + vetor2[i];
+        cout << vetor3[i];
+        if (i < (TAM - 1))
+            cout << ", ";
+    }
+    
+    cout << "]";
+    
+    return 0;
+}
