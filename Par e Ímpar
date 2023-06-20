@@ -1,0 +1,28 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    float vetor[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, divf;
+    int par, impar, i, divi;
+
+    cout << "\n\tLista de valores: [";
+
+    for (i = 0; i < 10; i++) {
+        divf = vetor[i] / 2;
+        divi = vetor[i] / 2;
+        if (divf != divi)
+            vetor[i] = 0;
+        else vetor[i] = vetor[i] * 2;
+        
+        cout << vetor[i];
+        
+        if (i != 9)
+            cout << ", ";
+    }
+    cout << "]";
+
+    return 0;
+}
