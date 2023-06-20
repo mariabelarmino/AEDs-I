@@ -1,0 +1,29 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#define TAM 10
+
+using namespace std;
+
+int main() {
+    int vetor[TAM] = {5, 3, 4, 6, 9, 5, 4};
+    int qtd = 7;
+    
+    cout << "Vetor sem valores repetidos: [";
+
+    for (int i = 0; i < qtd; i++){
+        for (int j = (i + 1); j < qtd; j++){
+            if (vetor[i] == vetor[j]){
+                qtd--;
+                for (int k = j; k < qtd; k++){
+                    vetor[k] = vetor[k + 1];
+                }
+            }
+        }
+        cout << vetor[i] << " ";
+    }
+
+    cout << "]";      
+            
+    return 0;
+	}
