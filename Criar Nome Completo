@@ -1,0 +1,50 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int i = 0, j = 0;
+    char nome[30], sobrenome[30], nomecompleto[60];
+
+    nome[0] = 'M';
+    nome[1] = 'a';
+    nome[2] = 'r';
+    nome[3] = 'i';
+    nome[4] = 'a';
+    nome[5] = ' ';
+    nome[6] = 'L';
+    nome[7] = 'u';
+    nome[8] = 'i';
+    nome[9] = 'z';
+    nome[10] = 'a';
+    nome[11] = '\0';
+
+    cout << nome << " ";
+
+    sobrenome[0] = 'A';
+    sobrenome[1] = 'l';
+    sobrenome[2] = 'v';
+    sobrenome[3] = 'e';
+    sobrenome[4] = 's';
+    sobrenome[5] = '\0';
+
+    cout << sobrenome << endl;
+
+    while (nome[i] != '\0') {
+        nomecompleto[i] = nome[i];
+        i++;
+    }
+    nomecompleto[i] = ' ';
+    while (sobrenome[j] != '\0') {
+        nomecompleto[i + 1] = sobrenome[j];
+        j++;
+        i++;
+    }
+    
+    nomecompleto[i + 1] = '\0';
+
+    cout << nomecompleto;
+
+    return 0;
+}
