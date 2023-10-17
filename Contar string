@@ -1,0 +1,65 @@
+#include <cstdlib>
+#include <iostream>
+#include <stdbool.h>
+#define TAM 5
+
+using namespace std;
+
+int main()
+{
+    int v1[TAM] = {8, 9, 5, 4, 2}, v2[TAM] = {1, 3, 6, 10, 7}, v3[2 * TAM], i, temp;
+    bool troca = 1;
+
+    for (i = 0; i < TAM; i++)
+    {
+        v3[i] = v1[i];
+    }
+    for (i = TAM; i < (2 * TAM); i++)
+    {
+        v3[i] = v2[i - TAM];
+    }
+
+    for (i = 0; i < (2 * TAM); i++){
+        std::cout << "\n\tPosicao " << i << " ==> " << v3[i];
+    }
+
+    std::cout << "\n\tVetor criado: [";
+
+    while (troca)
+    {
+        for (i = 0; i < ((2 * TAM) - 1); i++)
+        {
+            while (v3[i] > v3[i + 1])
+            {
+                temp = v3[i];
+                v3[i] = v3[i + 1];
+                v3[i + 1] = temp;
+            }
+        }
+        for (i = 0; i < ((2 * TAM) - 1); i++)
+        {
+            if (v3[i] < v3[i + 1])
+            troca = 0;
+            else troca = 1;
+        }
+    }
+
+    /*for (i = 0; i < TAM; i++){
+        for (menor = i; j <= TAM; j++){
+        if (v3[j] < v3[menor])
+        v3[menor] = v3[j];
+        }
+        temp = v3[i];
+        v3[i] = v3[menor];
+        v3[menor] = temp;
+    }*/
+
+    for (i = 0; i < (2 * TAM); i++)
+    {
+        std::cout << v3[i] << " ";
+    }
+
+    std::cout << "]";
+
+    return 0;
+}
