@@ -1,0 +1,239 @@
+//UNIVERSIDADE FEDERAL DE ALFENAS
+//
+//DISCIPLINA: ALGORITMOS E ESTRUTURA DE DADOS I
+//
+//PROFESSOR: PAULO BRESSAN
+//
+//ALUNAS: GIOVANA SILVERIO PEREIRA E MARIA LUIZA ALVES BELARMINO
+
+#include <iostream>
+#include <cstdlib>
+#include <time.h>
+#include <fstream>
+
+using namespace std;
+
+int troca = 0; // declaração global para usar em todas as funções
+
+/*CRIAR LISTA DE NÚMEROS ALEATÓRIOS*/
+void GerarAleatorios(int vetor[], int nlinhas) { // declaração da função para gerar os números aleatórios
+    srand(time(NULL));
+    int valor;
+    vetor[0] = rand() % 100;
+    for (int i = 0; i < nlinhas; i++) {
+        valor = rand() % 10000;
+        /*CONFERE SE TEM NÚMEROS IGUAIS*/
+        int j = 0;
+        while (j < nlinhas) {
+            if (valor == vetor[j]) {
+                valor = rand() % 10000;
+                j = 0;
+            } else j++;
+        }
+        vetor[i] = valor;
+    }
+}
+
+void criarArquivo(int vetor[], int nlinhas) { // declaração da função para criar um arquivo com os valores gerados anteriormente
+    ofstream arquivo("saida.txt");
+    if (arquivo.is_open()) {
+        arquivo << nlinhas;
+        for (int i = 0; i < nlinhas; i++) {
+            arquivo << vetor[i] << endl;
+        }
+        arquivo.close();
+    } else cout << "\n\t Erro ao abrir o arquivo" << endl;
+    ifstream teclado("saida.txt");
+    int j;
+    teclado >> j;
+    for (int i = 1; i <= nlinhas; i++) {
+        teclado >> vetor[i];
+    }
+
+
+}
+
+void criarCrescente(int vetor[], int nlinhas) { // declaração da função para ordenar os números aleatórios em ordem crescente
+    for (int i = 0; i < nlinhas; i++) {
+        int temp = 0;
+        for (int j = 0; j < i; j++) {
+            if (vetor[j] > vetor[i]) {
+                temp = vetor[i];
+                vetor[i] = vetor[j];
+                vetor[j] = temp;
+            }
+        }
+    }
+}
+
+void criarDecrescente(int vetor[], int nlinhas) { // declaração da função para ordenar os números aleatórios em ordem decrescente
+    for (int i = nlinhas; i > 0; i--) {
+        int temp = 0;
+        for (int j = 0; j > i; j++) {
+            if (vetor[j] < vetor[i]) {
+                temp = vetor[j];
+                vetor[j] = vetor[i];
+                vetor[i] = temp;
+            }
+        }
+    }
+}
+
+void BubbleSort(int vetor[], int nlinhas) { // declaração da função para ordenar os números aleatórios com o método BubbleSort
+    int temp = 0;
+    for (int i = 0; i < nlinhas; i++) {
+        for (int j = 0; j < nlinhas; j++) {
+            if (vetor[i] > vetor[j]) {
+                temp = vetor[i];
+                vetor[i] = vetor[j];
+                vetor[j] = temp;
+                troca = troca + 4;
+            }
+            troca = troca + 2;
+        }
+        nlinhas--;
+    }
+}
+
+void InsertionSort(int vetor[], int nlinhas) { // declaração da função para ordenar os números aleatórios com o método IsertionSort
+    for (int i = 1; i < nlinhas; i++) {
+        int temp = vetor[i];
+        int j = i - 1;
+        while (j >= 0 && temp <= vetor[j]) {
+            vetor[j + 1] = vetor[j];
+            j = j - 1;
+            troca = troca + 3;
+        }
+        troca = troca + 2;
+        vetor[j + 1] = temp;
+    }
+}
+
+void SelectionSort(int vetor[], int nlinhas) { // declaração da função para ordenar os números aleatórios com o método SelectionSort
+    int pmenor = 0, temp = 0;
+    for (int i = 0; i < nlinhas - 1; i++) {
+        pmenor = i;
+        for (int j = i + 1; j < nlinhas; j++) {
+            if (vetor[j] < vetor[pmenor]);
+            pmenor = j;
+        }
+        troca = troca + 2;
+        temp = vetor[i];
+        vetor[i] = vetor[pmenor];
+        vetor[pmenor] = temp;
+        troca = troca + 4;
+    }
+}
+
+int main() {
+
+
+    int nlinhas = 0, igual, pmenor = 0, j;
+
+    cout << "Digite o tamanho do vetor: ";
+    cin >> nlinhas;
+
+    int vetor[nlinhas];
+
+
+    cout << "\n\tVetor Aleatorio: ";
+    GerarAleatorios(vetor, nlinhas);
+    criarArquivo(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << "  ";
+    }
+
+    cout << "\n\tVetor Crescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarCrescente(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+
+    cout << "\n\tVetor Decrescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarDecrescente(vetor, nlinhas);
+    for (int i = nlinhas - 1; i >= 0; i--) {
+        cout << vetor[i] << " ";
+    }
+
+    cout << "\n\n\tBubbleSort Aleatório: ";
+    criarArquivo(vetor, nlinhas);
+    BubbleSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método BubbleSort foi: " << troca;
+
+    cout << "\n\n\tInsertionSort Aleatório: ";
+    criarArquivo(vetor, nlinhas);
+    InsertionSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método InsertionSort foi: " << troca;
+
+    cout << "\n\n\tSelectionSort Aleatório: ";
+    criarArquivo(vetor, nlinhas);
+    SelectionSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método SelectionSort foi: " << troca;
+
+    cout << "\n\n\tBubbleSort Crescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarCrescente(vetor, nlinhas);
+    BubbleSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método BubbleSort foi: " << troca;
+
+    cout << "\n\n\tInsertionSort Crescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarCrescente(vetor, nlinhas);
+    InsertionSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método InsertionSort foi: " << troca;
+
+    cout << "\n\n\tSelectionSort Crescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarCrescente(vetor, nlinhas);
+    SelectionSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método SelectionSort foi: " << troca;
+
+    cout << "\n\n\tBubbleSort Decrescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarDecrescente(vetor, nlinhas);
+    BubbleSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método BubbleSort foi: " << troca;
+
+    cout << "\n\n\tInsertionSort Decrescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarDecrescente(vetor, nlinhas);
+    InsertionSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método InsertionSort foi: " << troca;
+
+    cout << "\n\n\tSelectionSort Decrescente: ";
+    criarArquivo(vetor, nlinhas);
+    criarDecrescente(vetor, nlinhas);
+    SelectionSort(vetor, nlinhas);
+    for (int i = 0; i < nlinhas; i++) {
+        cout << vetor[i] << " ";
+    }
+    cout << "\n\tA quantidade de trocas feitas pelo método SelectionSort foi: " << troca;
+
+    return 0;
+}
